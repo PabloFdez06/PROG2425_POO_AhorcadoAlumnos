@@ -8,6 +8,7 @@ import io.ktor.serialization.gson.*
 import kotlinx.coroutines.runBlocking
 
 class Palabra(val palabraOculta: String) {
+
     val progreso: Array<Char> = Array<Char>(palabraOculta.length) { '_' }
 
     fun revelarLetra(letra: Char?): Boolean {
@@ -22,7 +23,7 @@ class Palabra(val palabraOculta: String) {
     }
 
     fun obtenerProgreso(): String {
-        return progreso.joinToString { " " }
+        return progreso.joinToString(" ")
     }
 
     fun esCompleta(): Boolean {

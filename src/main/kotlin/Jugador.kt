@@ -12,12 +12,12 @@ class Jugador(intentos: Int,
     fun intentarLetra(letra: Char): Boolean {
         if (letra !in letrasUsadas) {
             letrasUsadas.add(letra)
-            fallarIntento()
-            println("ERROR: Letra no válida o ya utilizada. Intenta otra vez.\n")
             return true
-        }
-        return false
+        } else {
+            println("ERROR: Letra no válida o ya utilizada. Intenta otra vez.\n")
+            return false
 
+        }
     }
 
      fun fallarIntento() {
@@ -25,7 +25,7 @@ class Jugador(intentos: Int,
     }
 
     fun obtenerLetrasUsadas(): String {
-        return letrasUsadas.joinToString { " " }
+        return letrasUsadas.joinToString(" ")
     }
 
 }
