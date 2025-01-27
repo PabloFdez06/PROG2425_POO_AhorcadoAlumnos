@@ -1,7 +1,9 @@
 package es.iesra.prog2425_ahorcado
 
 fun main() {
-    val palabras = Palabra.generarPalabras(cantidad = 10, tamanioMin = 7, tamanioMax = 7, idioma = Idioma.ES)
+    val palabras = Palabra.generarPalabras(cantidad = 2, tamanioMin = 7, tamanioMax = 7, idioma = Idioma.ES)
+
+    palabras.add(Palabra("cúrcuma"))
 
     var seguirJugando : Boolean
     do {
@@ -21,7 +23,8 @@ fun main() {
 
 //TODO: Crear una función de extensión quitarAcentos para la clase Char
 //      Intentad utilizarlo en el programa para ser capaces de encontrar coincidencias con vocales acentuadas.
-/*fun Char.quitarAcentos(): Char {
+fun Char.quitarAcentos(): Char {
+/*
     //Yo crearía un mapa de vocales acentuadas como clave con el valor como la vocal sin acentuar
     //Vocales minúsculas y mayúsculas.
     // Después retornaría el valor de la clave para el reciever si se ha encontrado o el mismo reciever.
@@ -30,7 +33,21 @@ fun main() {
     sobre el cual la función de extensión será llamada. Dentro de la función de extensión, puedes acceder
     a las propiedades y métodos de esta instancia utilizando this.
     *//*
-}*/
+*/
+    val acentosMap = mapOf('á' to 'a', 'é' to 'e', 'í' to 'i', 'ó' to 'o', 'ú' to 'u',
+        'Á' to 'A', 'É' to 'E', 'Í' to 'I', 'Ó' to 'O', 'Ú' to 'U')
+
+    return acentosMap[this]?: this
+
+/*    var letra = ""
+
+    for (caracter in this){
+
+        letra += acentosMap.getOrDefault(caracter, caracter)
+    }
+
+    return letra*/
+}
 
 /**
  * Elimina y retorna un elemento aleatorio de este [MutableSet].

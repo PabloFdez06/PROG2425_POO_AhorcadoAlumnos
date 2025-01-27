@@ -14,9 +14,7 @@ class Jugador(intentos: Int,
             letrasUsadas.add(letra)
             return true
         } else {
-            println("ERROR: Letra no válida o ya utilizada. Intenta otra vez.\n")
             return false
-
         }
     }
 

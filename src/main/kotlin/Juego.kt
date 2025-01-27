@@ -12,21 +12,18 @@ class Juego(val palabra: Palabra, val jugador: Jugador) {
                     "Letras usadas: ${jugador.obtenerLetrasUsadas()}\n" +
                     "Introduce una letra: ")
 
-            var letra: Char? = ' '
-            var letraCorrecta = false
-            while (!letraCorrecta) {
-                letra = readln().lowercase().firstOrNull()
-                if (letra != null && jugador.intentarLetra(letra)) {
-                    letraCorrecta = true
-                } else println("ERROR: Letra no válida o ya utilizada. Intenta otra vez.\n")
-            }
 
-            if (palabra.revelarLetra(letra)) {
-                print("¡Bien hecho! La letra '$letra' está en la palabra.")
-            } else {
-                jugador.fallarIntento()
-                println("La letra '$letra' no está en la palabra.")
-            }
+            val letra = readln().lowercase().firstOrNull()
+            if (letra != null && jugador.intentarLetra(letra)) {
+
+                if (palabra.revelarLetra(letra)) {
+                    print("¡Bien hecho! La letra '$letra' está en la palabra.")
+                } else {
+                    jugador.fallarIntento()
+                    println("La letra '$letra' no está en la palabra.")
+                }
+            } else println("ERROR: Letra no válida o ya utilizada. Intenta otra vez.\n")
+
         } while ((jugador.intentos > 0) && !palabra.esCompleta())
 
         if (palabra.esCompleta()) {

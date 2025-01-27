@@ -11,11 +11,11 @@ class Palabra(val palabraOculta: String) {
 
     val progreso: Array<Char> = Array<Char>(palabraOculta.length) { '_' }
 
-    fun revelarLetra(letra: Char?): Boolean {
+    fun revelarLetra(letra: Char): Boolean {
         var letraCorrecta = false
         for ((i, caracter) in palabraOculta.withIndex()) {
-            if (caracter == letra) {
-                progreso[i] = letra
+            if (caracter.quitarAcentos() == letra.quitarAcentos()) {
+                progreso[i] = palabraOculta[i]
                 letraCorrecta = true
             }
         }
@@ -56,9 +56,7 @@ class Palabra(val palabraOculta: String) {
                         // Filtramos las palabras según las condiciones
                         val filtradas = respuesta
                             .map { it.trim().lowercase() } // Convertimos a minúsculas
-                            .filter { it.length in tamanioMin..tamanioMax } // Filtramos por tamaño
-                            .filter { it.matches(Regex(patron)) } // Solo letras
-                            .filter { !it.contains(" ") } // Excluye palabras que contengan espacios
+                            .filter { it.length in tamanioMin..tamanioMax && it.matches(Regex(patron)) && !it.contains(" ") } // Filtramos por tamaño
                             .map { Palabra(it) } // Mapeamos a la data class
 
                         palabras.addAll(filtradas)
